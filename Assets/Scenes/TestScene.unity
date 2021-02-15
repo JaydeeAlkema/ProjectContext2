@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &843695351
+--- !u!1 &2136292073
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,8 +131,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 843695353}
-  - component: {fileID: 843695352}
+  - component: {fileID: 2136292075}
+  - component: {fileID: 2136292074}
+  - component: {fileID: 2136292076}
   m_Layer: 0
   m_Name: Temp
   m_TagString: Untagged
@@ -140,28 +141,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &843695352
+--- !u!114 &2136292074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 843695351}
+  m_GameObject: {fileID: 2136292073}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4383f632c9f71264aba3a0bacd3b656f, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c48e5916522dd74f97cde85ed10ef2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myDataType:
-    name: Jaydee
-    ageInMilliseconds: 161185463415416465
---- !u!4 &843695353
+--- !u!4 &2136292075
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 843695351}
+  m_GameObject: {fileID: 2136292073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -169,6 +167,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2136292076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136292073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b310bbc563112b445b439de3c8bd80b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!108 &2138677392 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 8809274633214773294, guid: 94a68c86a6c122c4f968decea2095d5b, type: 3}
