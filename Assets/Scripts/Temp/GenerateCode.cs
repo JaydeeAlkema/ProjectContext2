@@ -7,6 +7,8 @@ using UnityEngine;
 using UnityEditor;
 using ExampleNamespace;
 
+#if UNITY_EDITOR
+
 public class GenerateCode : MonoBehaviour
 {
 	MethodInfo[] publicMethodInfos;
@@ -82,3 +84,5 @@ public class GenerateCode : MonoBehaviour
 	}
 
 }
+
+#endif
