@@ -15,7 +15,12 @@ namespace LogbookGenerator
 
 		private string logPath;
 		private int toolbarInt = 0;
-		string[] toolbarTabTitles = { "HOME", "ADD LOG", "EDIT LOG", "REMOVE LOG" };
+		string[] toolbarTabTitles = { "Home", "Add Log", "Edit Log", "Remove Log" };
+
+		private string Log_Username = "Username";
+		private string Log_Title = "Title";
+		private string Log_Message = "Message...";
+		private string Log_Notes = "Notes...";
 
 		[MenuItem( "Window/Logbook Generator" )]
 		static void ShowWindow()
@@ -70,21 +75,35 @@ namespace LogbookGenerator
 
 			GUILayout.Label( "Current Path:" );
 			GUILayout.Label( logPath, EditorStyles.wordWrappedLabel );
+
+			//if( logPath != "" )
+			//{
+			//	GenerateLog.GetEntriesFromLogFile( logPath );
+			//}
 		}
 		private void ShowAddLogContents()
 		{
 			//TODO:
 			// Fix formating and make this look beter!
 
-			string user = GUILayout.TextField( "User Name" );
-			string title = GUILayout.TextField( "Log Title" );
-			string message = GUILayout.TextArea( "Log Message" );
-			string notes = GUILayout.TextArea( "Log Notes" );
+			GUILayout.Space( 2 );
+			Log_Username = EditorGUILayout.TextField( "", Log_Username );
+			GUILayout.Space( 5 );
+			Log_Title = EditorGUILayout.TextField( "", Log_Title );
+			GUILayout.Space( 2 );
+			Log_Message = GUILayout.TextArea( Log_Message, GUILayout.ExpandHeight( true ), GUILayout.Height( 128 ) );
+			GUILayout.Space( 5 );
+			Log_Notes = GUILayout.TextArea( Log_Notes, GUILayout.ExpandHeight( true ), GUILayout.Height( 64 ) );
 
 			GUILayout.FlexibleSpace();
 			if( GUILayout.Button( "Complete" ) )
 			{
-				GenerateLog.WriteToLog( logPath, user, title, message, notes );
+				GenerateLog.WriteToLog( logPath, Log_Username, Log_Title, Log_Message, Log_Notes );
+
+				Log_Username = "Username";
+				Log_Title = "Title";
+				Log_Message = "Message...";
+				Log_Notes = "Notes...";
 			}
 		}
 		private void ShowEditLogContents()
