@@ -32,6 +32,7 @@ namespace LogbookGenerator
 		{
 			toolbarInt = GUILayout.Toolbar( toolbarInt, toolbarTabTitles );
 
+			GUILayout.Space( 15 );
 			ShowContentsDependingOnToolbarInt();
 		}
 
@@ -86,9 +87,8 @@ namespace LogbookGenerator
 			//TODO:
 			// Fix formating and make this look beter!
 
-			GUILayout.Space( 2 );
 			Log_Username = EditorGUILayout.TextField( "", Log_Username );
-			GUILayout.Space( 5 );
+			GUILayout.Space( 2 );
 			Log_Title = EditorGUILayout.TextField( "", Log_Title );
 			GUILayout.Space( 2 );
 			Log_Message = GUILayout.TextArea( Log_Message, GUILayout.ExpandHeight( true ), GUILayout.Height( 128 ) );
@@ -96,14 +96,20 @@ namespace LogbookGenerator
 			Log_Notes = GUILayout.TextArea( Log_Notes, GUILayout.ExpandHeight( true ), GUILayout.Height( 64 ) );
 
 			GUILayout.FlexibleSpace();
+			GUI.backgroundColor = Color.green;
 			if( GUILayout.Button( "Complete" ) )
 			{
 				GenerateLog.WriteToLog( logPath, Log_Username, Log_Title, Log_Message, Log_Notes );
 
-				Log_Username = "Username";
+				if( Log_Username != EditorPrefs.GetString( "Log_Username" ) )
+				{
+					EditorPrefs.SetString( "Log_Username", Log_Username );
+				}
+
+				Log_Username = EditorPrefs.GetString( "Log_Username" );
 				Log_Title = "Title";
-				Log_Message = "Message...";
-				Log_Notes = "Notes...";
+				Log_Message = "Message";
+				Log_Notes = "Notes";
 			}
 		}
 		private void ShowEditLogContents()
