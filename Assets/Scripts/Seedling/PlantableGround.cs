@@ -3,19 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PlantableGround : MonoBehaviour, IClickable
+public class PlantableGround : Clickable
 {
-	[SerializeField] private IClickable.ClickableState state = IClickable.ClickableState.INACTIVE;
+	[SerializeField] private Animator anim;
+	[SerializeField] private MeshRenderer meshRenderer;
+	[Space]
+	[SerializeField] private ClickableState state = ClickableState.INACTIVE;
 	[SerializeField] private GameObject interactionParticles = default;
-	[SerializeField] private List<IClickable> requiredActiveClickables = new List<IClickable>();
+	[SerializeField] private List<Clickable> requiredActiveClickables = new List<Clickable>();
+	[Space]
+	[SerializeField] private Material InfirtleGroundMaterial;
+	[SerializeField] private Material FirtleGroundMaterial;
 
-	private Animator anim;
-
-	public bool clicked { get; set; }
+	public override bool clicked { get; set; }
 
 	private void Start()
 	{
 		anim = GetComponent<Animator>();
+		meshRenderer.GetComponent<MeshRenderer>();
+
+		meshRenderer.sharedMaterial = InfirtleGroundMaterial;
+
+		SetAnimatorState();
+		interactionParticles.SetActive( false );
+
+	}
+
+	private void FixedUpdate()
+	{
+		CheckIfAllClickableAreActive();
 	}
 
 	private void OnMouseDown()
@@ -23,20 +39,20 @@ public class PlantableGround : MonoBehaviour, IClickable
 		Click();
 	}
 
-	public void Click()
+	public override void Click()
 	{
-		CheckIfAllClickableAreActive();
+		clicked = true;
+		SetAnimatorState();
 	}
 
 	private void SetAnimatorState()
 	{
 		switch( state )
 		{
-			case IClickable.ClickableState.INACTIVE:
+			case ClickableState.INACTIVE:
 				anim.SetBool( "Planted", false );
-				interactionParticles.SetActive( true );
 				break;
-			case IClickable.ClickableState.ACTIVE:
+			case ClickableState.ACTIVE:
 				anim.SetBool( "Planted", true );
 				interactionParticles.SetActive( false );
 				break;
@@ -47,13 +63,18 @@ public class PlantableGround : MonoBehaviour, IClickable
 
 	private void CheckIfAllClickableAreActive()
 	{
-		foreach( IClickable clickable in requiredActiveClickables )
+		Debug.Log( "Checking for Clicked Clickables." );
+
+		foreach( Clickable clickable in requiredActiveClickables )
 		{
-			if( clickable.clicked )
-				continue;
-			else
-				break;
+			if( clickable.clicked != true )
+			{
+				state = ClickableState.INACTIVE;
+				return;
+			}
 		}
-		SetAnimatorState();
+		state = ClickableState.ACTIVE;
+		interactionParticles.SetActive( true );
+		meshRenderer.sharedMaterial = FirtleGroundMaterial;
 	}
 }
