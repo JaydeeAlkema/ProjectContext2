@@ -67,6 +67,11 @@ namespace LogbookGenerator
 
 		private void ShowWelcomeContents()
 		{
+			if( EditorPrefs.GetString( "LogbookGenerator_LogPath" ) != "" )
+			{
+				logPath = EditorPrefs.GetString( "LogbookGenerator_LogPath" );
+			}
+
 			if( GUILayout.Button( "Select Log File" ) )
 			{
 				logPath = EditorUtility.OpenFilePanel( "Select Log File", "This can be a .doc/.docx/.txt etc.", "" );
