@@ -1,32 +1,12 @@
-1/3/2021 12:22:11
+2/3/2021 18:21:47
 Jaydee
-Add Test Title
+Full test of forbidden character deletion
 
-- Add Message
-- looks very neat.
-- but is kinda lacking in UI design
+- this message will hold forbidden character after the colon:  
+- You should now only see the colon character, and nothing after that.
 
-UI looks shit...
-
-------------------------------------------------------------------------
-
-1/3/2021 12:22:22
-Username
-Title
-
-Message...
-
-Notes...
-
-------------------------------------------------------------------------
-
-1/3/2021 12:38:33
-Jaydee
-Test
-
-af sfafaf afas
-
-notesasdsadad
+The same goes for the notes:  
+See! Only the colon remains :)
 
 ------------------------------------------------------------------------
 

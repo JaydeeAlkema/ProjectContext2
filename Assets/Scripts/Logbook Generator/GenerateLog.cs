@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -25,10 +26,11 @@ public static class GenerateLog
 		//Debug.Log( logPath + "\n" + user + "\n" + title + "\n" + message + "\n" + notes );
 		LogEntry entry = new LogEntry
 		{
-			username = user,
-			title = title,
-			message = message,
-			notes = notes
+			Username = ClearForbiddenCharactersFromString( user ),
+			Title = ClearForbiddenCharactersFromString( title ),
+			Message = ClearForbiddenCharactersFromString( message ),
+			Notes = ClearForbiddenCharactersFromString( notes ),
+			TimeOfLog = GetDate()
 		};
 
 		entries.Add( entry );
@@ -36,11 +38,11 @@ public static class GenerateLog
 		StringBuilder sb = new StringBuilder();
 
 		// Write File
-		sb.AppendLine( GetDate() );
-		sb.AppendLine( entry.username );
-		sb.AppendLine( entry.title + "\n" );
-		sb.AppendLine( entry.message + "\n" );
-		sb.AppendLine( entry.notes );
+		sb.AppendLine( entry.TimeOfLog );
+		sb.AppendLine( entry.Username );
+		sb.AppendLine( entry.Title + "\n" );
+		sb.AppendLine( entry.Message + "\n" );
+		sb.AppendLine( entry.Notes );
 		sb.AppendLine( "\n" + "------------------------------------------------------------------------" + "\n" );
 
 		// Send File
@@ -48,6 +50,42 @@ public static class GenerateLog
 		sw.Write( sb );
 		sw.Flush();
 		sw.Close();
+
+		WriteToDataLog( entry.Username, entry.Title, entry.Message, entry.Notes, entry.TimeOfLog );
+	}
+
+
+	private static void WriteToDataLog( string user, string title, string message, string notes, string timeOfLog )
+	{
+		StringBuilder sb = new StringBuilder();
+
+		string dataPath = Application.persistentDataPath + "_" + user + "_DATALOG" + ".txt";
+
+		// Write File
+		sb.AppendLine( timeOfLog + ";" );
+		sb.AppendLine( user + ";" );
+		sb.AppendLine( title + ";" );
+		sb.AppendLine( message + ";" );
+		sb.AppendLine( notes + "|" );
+
+		// Send File
+		StreamWriter sw = new StreamWriter( dataPath, true );
+		sw.Write( sb );
+		sw.Flush();
+		sw.Close();
+
+		Debug.Log( "Write DataLog to: " + dataPath );
+	}
+
+	private static void GetEntriesFromDataLog()
+	{
+		//TODO:
+
+		// Read complete Data Log File
+
+		// Seperate complete string into substring
+
+		// Convert substrings back into entries and add these to the list for safekeeping.
 	}
 
 	private static string GetDate()
@@ -60,12 +98,24 @@ public static class GenerateLog
 
 		return day + "/" + month + "/" + year + " " + time;
 	}
+	private static string ClearForbiddenCharactersFromString( string text )
+	{
+		char[] charsToRemove = { ';', '|' };
+
+		foreach( char c in charsToRemove )
+		{
+			text = text.Replace( c.ToString(), String.Empty );
+		}
+		return text;
+	}
 }
 
 public struct LogEntry
 {
-	public string username { get; set; }
-	public string title { get; set; }
-	public string message { get; set; }
-	public string notes { get; set; }
+	public string Username { get; set; }
+	public string Title { get; set; }
+	public string Message { get; set; }
+	public string Notes { get; set; }
+
+	public string TimeOfLog { get; set; }
 }
