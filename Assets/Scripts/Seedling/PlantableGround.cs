@@ -54,7 +54,7 @@ public class PlantableGround : Clickable
 				break;
 			case ClickableState.ACTIVE:
 				anim.SetBool( "Planted", true );
-				interactionParticles.SetActive( false );
+				Destroy( interactionParticles );
 				break;
 			default:
 				break;
@@ -74,7 +74,7 @@ public class PlantableGround : Clickable
 			}
 		}
 		state = ClickableState.ACTIVE;
-		interactionParticles.SetActive( true );
+		if( interactionParticles ) interactionParticles.SetActive( true );
 		meshRenderer.sharedMaterial = FirtleGroundMaterial;
 	}
 }
