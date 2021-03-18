@@ -11,18 +11,16 @@ public enum PlayerMovementState
 
 public class PlayerMovement : MonoBehaviour
 {
-	[BoxGroup( "Components" )]
-	[SerializeField] [Required] private Rigidbody rb;
 
-	[BoxGroup( "Input" )]
-	[SerializeField] [InputAxis] private string horizontalMovementInputAxis = "";
+	[BoxGroup( "Components" )] [SerializeField] [Required] private Rigidbody rigidBody;
+	[BoxGroup( "Components" )] [SerializeField] [Required] private Animator animator;
 
-	[BoxGroup( "Movement Values" )]
-	[SerializeField] private float movementSpeed;
+	[BoxGroup( "Input" )] [SerializeField] [InputAxis] private string horizontalMovementInputAxis = "";
 
-	[BoxGroup( "Debug" )]
-	[SerializeField] private float movementInput;
-	[SerializeField] private PlayerMovementState movementState = PlayerMovementState.IDLE;
+	[BoxGroup( "Movement Values" )] [SerializeField] private float movementSpeed;
+
+	[BoxGroup( "Debug" )] [SerializeField] private float movementInput;
+	[BoxGroup( "Debug" )] [SerializeField] private PlayerMovementState movementState = PlayerMovementState.IDLE;
 
 	public void Update()
 	{
@@ -36,6 +34,14 @@ public class PlayerMovement : MonoBehaviour
 
 	public void Move()
 	{
-		rb.velocity = transform.forward * ( movementInput * movementSpeed );
+		rigidBody.velocity = transform.forward * ( movementInput * movementSpeed );
+		if( movementInput != 0 )
+		{
+			animator.SetBool( "Walking", true );
+		}
+		else
+		{
+			animator.SetBool( "Walking", false );
+		}
 	}
 }
