@@ -10,6 +10,7 @@ public static class AudioManager
 	/// <param name="pos"> Where to play the audio clip. (world coordinates)</param>
 	/// <param name="clip"> Which audioclip to play. </param>
 	/// <param name="volume"> How loud it should be. </param>
+	/// <param name="loop"> If the audioclip should loop. </param>
 	public static void PlayAudioAtPosition( Vector3 pos, AudioClip clip, float volume, bool loop )
 	{
 		GameObject sound = new GameObject( "Sound" );
