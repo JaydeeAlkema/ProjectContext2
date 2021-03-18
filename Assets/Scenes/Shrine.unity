@@ -9246,7 +9246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1420919652129776684, guid: 1b7c87083d2242941b3e8d88b55d19da, type: 3}
       propertyPath: movementSpeed
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1420919652129776686, guid: 1b7c87083d2242941b3e8d88b55d19da, type: 3}
       propertyPath: m_Name
@@ -9487,6 +9487,18 @@ PrefabInstance:
     - target: {fileID: 6870053866175678242, guid: 1b7c87083d2242941b3e8d88b55d19da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228949582848478782, guid: 1b7c87083d2242941b3e8d88b55d19da, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228949582848478782, guid: 1b7c87083d2242941b3e8d88b55d19da, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228949582848478782, guid: 1b7c87083d2242941b3e8d88b55d19da, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7228949582848478782, guid: 1b7c87083d2242941b3e8d88b55d19da, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20406,7 +20418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1767457215}
   m_LocalRotation: {x: -0.023543537, y: -0.71220225, z: -0.02391388, w: 0.7011718}
-  m_LocalPosition: {x: 12.41, y: 4.41, z: -25}
+  m_LocalPosition: {x: 12.5, y: 4.800049, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 433587782}
@@ -20459,7 +20471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 732071540}
   smoothing: 0.215
-  offset: {x: 6, y: 0, z: 0}
+  offset: {x: 6, y: 0.94, z: 0}
   clampAxis: 8
   minClampPos: {x: 0, y: 0, z: -25}
   maxClampPos: {x: 0, y: 0, z: 60}
