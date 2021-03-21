@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 2a02df06a0495354ab608a0f3c426239
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Gill Sans
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 6b474869bbc650d4aa42e2cb127132a0, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
