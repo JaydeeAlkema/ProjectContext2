@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
 	[BoxGroup( "Input" )] [SerializeField] [InputAxis] private string horizontalMovementInputAxis = "";
 
 	[BoxGroup( "Movement Values" )] [SerializeField] private float movementSpeed;
+	[BoxGroup( "Movement Values" )] [SerializeField] private float minClampPosZ;
+	[BoxGroup( "Movement Values" )] [SerializeField] private float maxClampPosZ;
 
 	[BoxGroup( "Debug" )] [SerializeField] private float movementInput;
 	[BoxGroup( "Debug" )] [SerializeField] private PlayerMovementState movementState = PlayerMovementState.IDLE;
@@ -26,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
 	public void Update()
 	{
 		movementInput = Input.GetAxisRaw( horizontalMovementInputAxis );
+
+		ClampPosZ();
 	}
 
 	public void FixedUpdate()
@@ -38,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 		rigidBody.velocity = transform.forward * ( movementInput * movementSpeed );
 
 		// Animation
-		if( movementInput != 0 )
+		if( rigidBody.velocity.z != 0 )
 		{
 			animator.SetBool( "Walking", true );
 		}
@@ -48,13 +52,21 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		// Turning
-		if( rigidBody.velocity.x > 0 )
+		if( rigidBody.velocity.z > 0 )
 		{
-			model.Rotate( new Vector3( 0, 90, 0 ) );
+			model.rotation = Quaternion.Euler( new Vector3( 0, 0, 0 ) );
 		}
-		else if( rigidBody.velocity.x < 0 )
+		else if( rigidBody.velocity.z < 0 )
 		{
-			model.Rotate( new Vector3( 0, -90, 0 ) );
+			model.rotation = Quaternion.Euler( new Vector3( 0, -180, 0 ) );
 		}
+	}
+
+	private void ClampPosZ()
+	{
+		Vector3 pos = transform.position;
+		pos.z = Mathf.Clamp( pos.z, minClampPosZ, maxClampPosZ );
+
+		transform.position = pos;
 	}
 }
