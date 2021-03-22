@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
 	[BoxGroup( "Components" )] [SerializeField] [Required] private Rigidbody rigidBody;
 	[BoxGroup( "Components" )] [SerializeField] [Required] private Animator animator;
+	[BoxGroup( "Components" )] [SerializeField] [Required] private Transform model;
 
 	[BoxGroup( "Input" )] [SerializeField] [InputAxis] private string horizontalMovementInputAxis = "";
 
@@ -35,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
 	public void Move()
 	{
 		rigidBody.velocity = transform.forward * ( movementInput * movementSpeed );
+
+		// Animation
 		if( movementInput != 0 )
 		{
 			animator.SetBool( "Walking", true );
@@ -42,6 +45,16 @@ public class PlayerMovement : MonoBehaviour
 		else
 		{
 			animator.SetBool( "Walking", false );
+		}
+
+		// Turning
+		if( rigidBody.velocity.x > 0 )
+		{
+			model.Rotate( new Vector3( 0, 90, 0 ) );
+		}
+		else if( rigidBody.velocity.x < 0 )
+		{
+			model.Rotate( new Vector3( 0, -90, 0 ) );
 		}
 	}
 }
