@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2811181, g: 0.36647263, b: 0.49885282, a: 1}
+  m_IndirectSpecularColor: {r: 0.28111953, g: 0.36647466, b: 0.49885523, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27603,6 +27603,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4236812779172730, guid: 83947e578a8055044875f9870ddf4a45, type: 3}
   m_PrefabInstance: {fileID: 2134068241}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3822785959266588098
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1784777939145611241, guid: 9c72d24c97e73dc479c1cd09c0881efe, type: 3}
+      propertyPath: m_Name
+      value: AudioClipManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198696914882331683, guid: 9c72d24c97e73dc479c1cd09c0881efe, type: 3}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198696914882331683, guid: 9c72d24c97e73dc479c1cd09c0881efe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198696914882331683, guid: 9c72d24c97e73dc479c1cd09c0881efe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198696914882331683, guid: 9c72d24c97e73dc479c1cd09c0881efe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198696914882331683, guid: 9c72d24c97e73dc479c1cd09c0881efe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198696914882331683, guid: 9c72d24c97e73dc479c1cd09c0881efe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198696914882331683, guid: 9c72d24c97e73dc479c1cd09c0881efe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198696914882331683, guid: 9c72d24c97e73dc479c1cd09c0881efe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198696914882331683, guid: 9c72d24c97e73dc479c1cd09c0881efe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198696914882331683, guid: 9c72d24c97e73dc479c1cd09c0881efe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198696914882331683, guid: 9c72d24c97e73dc479c1cd09c0881efe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835324359505331070, guid: 9c72d24c97e73dc479c1cd09c0881efe, type: 3}
+      propertyPath: sounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835324359505331070, guid: 9c72d24c97e73dc479c1cd09c0881efe, type: 3}
+      propertyPath: sounds.Array.data[0].name
+      value: Leaf Rustle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835324359505331070, guid: 9c72d24c97e73dc479c1cd09c0881efe, type: 3}
+      propertyPath: sounds.Array.data[0].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 188677d05491db24bbec7806dd6b5b30, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9c72d24c97e73dc479c1cd09c0881efe, type: 3}
 --- !u!1001 &4977550993114904464
 PrefabInstance:
   m_ObjectHideFlags: 0
