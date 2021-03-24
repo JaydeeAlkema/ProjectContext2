@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlantableGroundState
+{
+	INCOMPLETE = 0,
+	COMPLETE = 1
+}
 
 public class PlantableGround : Clickable
 {
+	[SerializeField] private PlantableGroundState planteableGroundState = PlantableGroundState.INCOMPLETE;
 	[SerializeField] private Animator anim;
-	[SerializeField] private MeshRenderer meshRenderer;
+	[SerializeField] private List<MeshRenderer> meshRenderers = new List<MeshRenderer>();
 	[Space]
-	[SerializeField] private ClickableState state = ClickableState.INACTIVE;
+	[SerializeField] private ClickableState clickableState = ClickableState.INACTIVE;
 	[SerializeField] private GameObject interactionParticles = default;
 	[SerializeField] private List<Clickable> requiredActiveClickables = new List<Clickable>();
 	[Space]
@@ -16,17 +22,20 @@ public class PlantableGround : Clickable
 	[SerializeField] private Material FirtleGroundMaterial;
 
 	public override bool clicked { get; set; }
+	public PlantableGroundState PlanteableGroundState { get => planteableGroundState; set => planteableGroundState =  value ; }
 
 	private void Start()
 	{
-		anim = GetComponent<Animator>();
-		meshRenderer.GetComponent<MeshRenderer>();
+		if( !anim ) anim = GetComponent<Animator>();
 
-		meshRenderer.sharedMaterial = InfirtleGroundMaterial;
+		foreach( MeshRenderer meshRenderer in meshRenderers )
+		{
+			meshRenderer.GetComponent<MeshRenderer>();
+			meshRenderer.sharedMaterial = InfirtleGroundMaterial;
+		}
 
 		SetAnimatorState();
 		interactionParticles.SetActive( false );
-
 	}
 
 	private void FixedUpdate()
@@ -47,13 +56,14 @@ public class PlantableGround : Clickable
 
 	private void SetAnimatorState()
 	{
-		switch( state )
+		switch( clickableState )
 		{
 			case ClickableState.INACTIVE:
 				anim.SetBool( "Planted", false );
 				break;
 			case ClickableState.ACTIVE:
 				anim.SetBool( "Planted", true );
+				planteableGroundState = PlantableGroundState.COMPLETE;
 				Destroy( interactionParticles );
 				break;
 			default:
@@ -63,18 +73,23 @@ public class PlantableGround : Clickable
 
 	private void CheckIfAllClickableAreActive()
 	{
-		Debug.Log( "Checking for Clicked Clickables." );
+		//Debug.Log( "Checking for Clicked Clickables." );
 
 		foreach( Clickable clickable in requiredActiveClickables )
 		{
 			if( clickable.clicked != true )
 			{
-				state = ClickableState.INACTIVE;
+				clickableState = ClickableState.INACTIVE;
 				return;
 			}
 		}
-		state = ClickableState.ACTIVE;
+
+		clickableState = ClickableState.ACTIVE;
 		if( interactionParticles ) interactionParticles.SetActive( true );
-		meshRenderer.sharedMaterial = FirtleGroundMaterial;
+
+		foreach( MeshRenderer meshRenderer in meshRenderers )
+		{
+			meshRenderer.sharedMaterial = FirtleGroundMaterial;
+		}
 	}
 }

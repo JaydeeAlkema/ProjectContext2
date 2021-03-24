@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class SceneSwitcher : MonoBehaviour
 {
 	[SerializeField] private int sceneIndexToSwitchTo;
+	[SerializeField] private PlantableGround plantable;
 
 	public void SwitchToScene()
 	{
@@ -15,9 +16,16 @@ public class SceneSwitcher : MonoBehaviour
 
 	private void OnTriggerEnter( Collider other )
 	{
-		if( other.GetComponent<IPlayable>() != null )
+		if( other.GetComponent<IPlayable>() != null && plantable != null && plantable.PlanteableGroundState == PlantableGroundState.COMPLETE )
 		{
 			SceneFader.Instance.FadeIn();
+			Debug.Log( "test1" );
 		}
+		else if( other.GetComponent<IPlayable>() != null && plantable == null )
+		{
+			SceneFader.Instance.FadeIn();
+			Debug.Log( "test2" );
+		}
+		Debug.Log( "test3" );
 	}
 }

@@ -7,11 +7,11 @@ public class ClickableBaseClass : Clickable
 {
 	[SerializeField] private List<UnityEvent> eventsOnClick = new List<UnityEvent>();
 
-	public override bool clicked { get; set; }
+	[SerializeField] public override bool clicked { get; set; }
 
 	private void Start()
 	{
-		clicked = false;
+		clicked = eventsOnClick.Count == 0 ? true : false;
 	}
 
 	private void OnMouseDown()
