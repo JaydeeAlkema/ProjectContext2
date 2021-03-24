@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioClipManager : MonoBehaviour
 {
-	[SerializeField] private static AudioClipManager instance;
+	[SerializeField] public static AudioClipManager instance;
 	[SerializeField] private List<SoundEffect> sounds = new List<SoundEffect>();
 
 	private void Awake()
