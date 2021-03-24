@@ -112,11 +112,13 @@ public class PlayerMovement : MonoBehaviour, IPlayable
 		{
 			transform.position = Vector3.MoveTowards( transform.position, movementTarget, ( 1 * movementSpeed ) * Time.deltaTime );
 			movementState = PlayerMovementState.WALKING;
-
+			playerState = PlayerState.CONTROLLED;
 		}
 		else
+		{
 			movementState = PlayerMovementState.IDLE;
-
+			playerState = PlayerState.CONTROLABLE;
+		}
 	}
 
 	/// <summary>

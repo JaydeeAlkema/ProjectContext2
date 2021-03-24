@@ -84,10 +84,9 @@ MonoBehaviour:
   minClampPosZ: -32
   maxClampPosZ: 69
   moveIntoScene: 1
-  movementTarget: {x: 6.25, y: 3.75, z: -25}
-  stoppingDistance: 0.25
+  movementTarget: {x: 7, y: 3.75, z: -25}
   doneMoving: 0
-  movementInput: 0
+  movementInput: {x: 0, y: 0, z: 0}
   movementState: 0
   playerState: 2
 --- !u!95 &5217628892755643340
