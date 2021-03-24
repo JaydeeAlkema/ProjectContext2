@@ -9722,7 +9722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 90dd3acd3b7bb3a498e6422297b4647e, type: 3}
   audioSource: {fileID: 1802808605}
-  stopAtSceneIndex: 2
+  stopAtSceneIndex: 3
 --- !u!4 &1802808607
 Transform:
   m_ObjectHideFlags: 0

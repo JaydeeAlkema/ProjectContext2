@@ -8,6 +8,7 @@ public class SceneSwitcher : MonoBehaviour
 {
 	[SerializeField] private int sceneIndexToSwitchTo;
 	[SerializeField] private PlantableGround plantable;
+	[SerializeField] private AudioSource AddedMusic;
 
 	public void SwitchToScene()
 	{
@@ -26,6 +27,7 @@ public class SceneSwitcher : MonoBehaviour
 			SceneFader.Instance.FadeIn();
 			Debug.Log( "test2" );
 		}
+		AddedMusic.volume = 0.3f;
 		Debug.Log( "test3" );
 	}
 }
