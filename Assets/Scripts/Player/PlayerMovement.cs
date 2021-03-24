@@ -45,10 +45,12 @@ public class PlayerMovement : MonoBehaviour
 		if( rigidBody.velocity.z != 0 )
 		{
 			animator.SetBool( "Walking", true );
+			movementState = PlayerMovementState.WALKING;
 		}
 		else
 		{
 			animator.SetBool( "Walking", false );
+			movementState = PlayerMovementState.IDLE;
 		}
 
 		// Turning
