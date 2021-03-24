@@ -81,12 +81,12 @@ MonoBehaviour:
   model: {fileID: 3575886525531384659}
   horizontalMovementInputAxis: Horizontal
   movementSpeed: 1.1
-  minClampPosZ: -30
-  maxClampPosZ: 69
-  moveIntoScene: 0
-  movementTarget: {x: 0, y: 0, z: 0}
-  stoppingDistance: 0
-  movementInput: 0
+  minClampPosZ: -5
+  maxClampPosZ: 26
+  moveIntoScene: 1
+  movementTarget: {x: -5, y: 3.75, z: 2}
+  doneMoving: 0
+  movementInput: {x: 0, y: 0, z: 0}
   movementState: 0
   playerState: 0
 --- !u!95 &5217628892755643340

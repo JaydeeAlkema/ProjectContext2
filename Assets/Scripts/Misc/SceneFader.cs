@@ -5,8 +5,8 @@ public class SceneFader : MonoBehaviour
 {
 	[SerializeField] private static SceneFader instance;
 	[SerializeField] [Required] private Animator animator;
-	[SerializeField] [Required] private PhotoTriggerManager photoTriggerManager;
-	[SerializeField] [Required] private SceneSwitcher sceneSwitcher;
+	[SerializeField] private PhotoTriggerManager photoTriggerManager;
+	[SerializeField] private SceneSwitcher sceneSwitcher;
 
 	public static SceneFader Instance { get; set; }
 
@@ -45,11 +45,13 @@ public class SceneFader : MonoBehaviour
 
 	public void TriggerPhotographs()
 	{
-		photoTriggerManager.TriggerPhotographs();
+		if( photoTriggerManager )
+			photoTriggerManager.TriggerPhotographs();
 	}
 
 	public void SwitchToNextScene()
 	{
-		sceneSwitcher.SwitchToScene();
+		if( sceneSwitcher )
+			sceneSwitcher.SwitchToScene();
 	}
 }
