@@ -13,14 +13,13 @@ public class PhotoTriggerManager : MonoBehaviour
 	[SerializeField] private PhotoTriggerManagerState state = PhotoTriggerManagerState.BUSY;
 	[SerializeField] private List<PhotoGraphObject> imagesToFade = new List<PhotoGraphObject>();
 
-	private void OnEnable()
+	public void TriggerPhotographs()
 	{
 		foreach( PhotoGraphObject photoGraphObject in imagesToFade )
 		{
 			photoGraphObject.animator.SetBool( "FadeIn", true );
 		}
 	}
-
 }
 
 [System.Serializable]

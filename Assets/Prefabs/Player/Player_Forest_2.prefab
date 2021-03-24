@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1420919652129776685}
   - component: {fileID: 1420919652129776684}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player_Forest_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 1.9
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1420919652129776685
@@ -78,10 +78,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1420919652129776685}
   animator: {fileID: 5217628892755643340}
+  model: {fileID: 3575886525531384659}
   horizontalMovementInputAxis: Horizontal
-  movementSpeed: 5
+  movementSpeed: 1.1
+  minClampPosZ: -30
+  maxClampPosZ: 69
+  moveIntoScene: 0
+  movementTarget: {x: 0, y: 0, z: 0}
+  stoppingDistance: 0
   movementInput: 0
   movementState: 0
+  playerState: 0
 --- !u!95 &5217628892755643340
 Animator:
   serializedVersion: 3

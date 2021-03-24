@@ -47,5 +47,3 @@ MonoBehaviour:
   imagesToFade:
   - name: PhotoGraph
     animator: {fileID: 0}
-  - name: Background
-    animator: {fileID: 0}

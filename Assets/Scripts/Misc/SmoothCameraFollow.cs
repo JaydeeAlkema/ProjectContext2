@@ -14,7 +14,7 @@ public enum ClampAxis
 public class SmoothCameraFollow : MonoBehaviour
 {
 	[SerializeField] [Required] private Transform target = default;
-	[Range( 0.1f, 2f )] [SerializeField] private float smoothing = 5f;
+	[Range( 0.1f, 2f )] [SerializeField] private float smoothing = 1f;
 	[SerializeField] private Vector3 offset = Vector3.zero;
 	[Space]
 	[EnumFlags]
