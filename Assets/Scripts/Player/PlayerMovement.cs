@@ -17,7 +17,7 @@ public enum PlayerState
 	CONTROLABLE = 2
 }
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IPlayable
 {
 	[BoxGroup( "Components" )] [SerializeField] [Required] private Rigidbody rigidBody;
 	[BoxGroup( "Components" )] [SerializeField] [Required] private Animator animator;
@@ -31,26 +31,22 @@ public class PlayerMovement : MonoBehaviour
 
 	[BoxGroup( "At Scene Start" )] [SerializeField] private bool moveIntoScene = false;
 	[BoxGroup( "At Scene Start" )] [EnableIf( "moveIntoScene" )] [SerializeField] private Vector3 movementTarget = Vector3.zero;
-	[BoxGroup( "At Scene Start" )] [EnableIf( "moveIntoScene" )] [SerializeField] [Range( -1f, 1f )] private float stoppingDistance = 0f;
 	[BoxGroup( "At Scene Start" )] [EnableIf( "moveIntoScene" )] [SerializeField] [ReadOnly] private bool doneMoving = false;
 
-	[BoxGroup( "Debug" )] [SerializeField] private float movementInput;
+	[BoxGroup( "Debug" )] [SerializeField] private Vector3 movementInput;
 	[BoxGroup( "Debug" )] [SerializeField] private PlayerMovementState movementState = PlayerMovementState.NONE;
 	[BoxGroup( "Debug" )] [SerializeField] private PlayerState playerState = PlayerState.CONTROLABLE;
 
 	public void Update()
 	{
-		movementInput = Input.GetAxisRaw( horizontalMovementInputAxis );
+		movementInput.z = Input.GetAxisRaw( horizontalMovementInputAxis );
 
-		ClampPosZ();
-	}
-
-	public void FixedUpdate()
-	{
 		if( moveIntoScene ) MoveTowardsPoint();
+
 		Move();
 		AnimateModel();
 		RotateModel();
+		ClampPosZ();
 	}
 
 	/// <summary>
@@ -60,7 +56,16 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if( playerState == PlayerState.CONTROLABLE )
 		{
-			rigidBody.velocity = transform.forward * ( movementInput * movementSpeed );
+			rigidBody.velocity = transform.forward * ( movementInput.z * movementSpeed );
+
+			if( rigidBody.velocity.z == 0 )
+			{
+				movementState = PlayerMovementState.IDLE;
+			}
+			else
+			{
+				movementState = PlayerMovementState.WALKING;
+			}
 		}
 	}
 
@@ -70,11 +75,11 @@ public class PlayerMovement : MonoBehaviour
 	private void RotateModel()
 	{
 		// Turning
-		if( rigidBody.velocity.z > 0 )
+		if( movementInput.z > 0 )
 		{
 			model.rotation = Quaternion.Euler( new Vector3( 0, 0, 0 ) );
 		}
-		else if( rigidBody.velocity.z < 0 )
+		else if( movementInput.z < 0 )
 		{
 			model.rotation = Quaternion.Euler( new Vector3( 0, -180, 0 ) );
 		}
@@ -86,15 +91,14 @@ public class PlayerMovement : MonoBehaviour
 	private void AnimateModel()
 	{
 		// Animation
-		if( rigidBody.velocity.z != 0 )
+		if( movementState == PlayerMovementState.WALKING )
 		{
 			animator.SetBool( "Walking", true );
-			movementState = PlayerMovementState.WALKING;
+
 		}
-		else
+		else if( movementState == PlayerMovementState.IDLE )
 		{
 			animator.SetBool( "Walking", false );
-			movementState = PlayerMovementState.IDLE;
 		}
 	}
 
@@ -103,21 +107,16 @@ public class PlayerMovement : MonoBehaviour
 	/// </summary>
 	private void MoveTowardsPoint()
 	{
+		if( Vector3.Distance( transform.position, movementTarget ) <= 0.2f ) doneMoving = true;
 		if( !doneMoving )
 		{
-			float distanceToTarget = Vector3.Distance( transform.position, movementTarget );
-			if( distanceToTarget >= stoppingDistance )
-			{
-				playerState = PlayerState.CONTROLLED;
-				rigidBody.velocity = transform.forward * ( 1 * movementSpeed );
-			}
-			else
-			{
-				playerState = PlayerState.CONTROLABLE;
-				doneMoving = true;
-				rigidBody.velocity = Vector3.zero;
-			}
+			transform.position = Vector3.MoveTowards( transform.position, movementTarget, ( 1 * movementSpeed ) * Time.deltaTime );
+			movementState = PlayerMovementState.WALKING;
+
 		}
+		else
+			movementState = PlayerMovementState.IDLE;
+
 	}
 
 	/// <summary>

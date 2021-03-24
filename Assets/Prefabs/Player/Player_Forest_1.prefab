@@ -86,6 +86,7 @@ MonoBehaviour:
   moveIntoScene: 1
   movementTarget: {x: -5, y: 3.75, z: -25}
   stoppingDistance: 0.25
+  doneMoving: 0
   movementInput: 0
   movementState: 0
   playerState: 0
