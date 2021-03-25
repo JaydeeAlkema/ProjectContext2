@@ -64,7 +64,8 @@ public class PlantableGround : Clickable
 			case ClickableState.ACTIVE:
 				anim.SetBool( "Planted", true );
 				planteableGroundState = PlantableGroundState.COMPLETE;
-				Destroy( interactionParticles );
+				if (interactionParticles) interactionParticles.SetActive(true);
+	
 				break;
 			default:
 				break;
@@ -85,7 +86,6 @@ public class PlantableGround : Clickable
 		}
 
 		clickableState = ClickableState.ACTIVE;
-		if( interactionParticles ) interactionParticles.SetActive( true );
 
 		foreach( MeshRenderer meshRenderer in meshRenderers )
 		{
